@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.main.home.HomeFragment">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        style="?attr/toolbarStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ProgressBar
+            android:id="@+id/locationLoading"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_gravity="center"
+            android:icon="@color/orange_yellow" />
+
+        <TextView
+            android:id="@+id/locationTitleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:drawablePadding="5dp"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:drawableStartCompat="@drawable/ic_baseline_my_location_24"
+            app:drawableTint="@color/orange_yellow"
+            tools:text="현재위치" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:visibility="gone"
+        tools:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:tabGravity="fill"
+        app:tabMaxWidth="0dp"
+        app:tabMode="auto"
+        app:tabIndicatorFullWidth="false"/>
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0.5dp"
+        android:background="@color/gray_168"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tabLayout"/>
+
+    <HorizontalScrollView
+        android:id="@+id/filterScrollView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        android:visibility="gone"
+        tools:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tabLayout">
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/order_chip_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="12dp"
+            app:checkedChip="@id/chip_default"
+            app:chipSpacingHorizontal="4dp"
+            app:chipSpacingVertical="6dp"
+            app:selectionRequired="true"
+            android:visibility="gone"
+            app:singleLine="true"
+            app:singleSelection="true"
+            tools:visibility="visible">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_initialize"
+                style="@style/Widget.Delivery.Chip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/initialize"
+                app:chipIconEnabled="true"
+                android:visibility="gone"
+                tools:visibility="visible"
+                app:chipIcon="@drawable/ic_refresh"
+                app:chipIconTint="@color/icon_filter_chip_state_list_reset" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_fast_delivery"
+                style="@style/Widget.Delivery.Chip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/fast_delivery"
+                app:chipIconEnabled="true"
+                app:chipIcon="@drawable/ic_thunder"
+                app:chipIconTint="@color/icon_filter_chip_state_list_delivery_fast" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_low_delivery_tip"
+                style="@style/Widget.Delivery.Chip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/low_delivery_tip"
+                app:chipIconEnabled="true"
+                app:chipIcon="@drawable/ic_down"
+                app:chipIconTint="@color/icon_filter_chip_state_list_delivery_tip" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_default"
+                style="@style/Widget.Delivery.Chip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/default_order"
+                app:chipIconEnabled="true"
+                app:chipIconTint="@color/icon_filter_chip_state_list_reset" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_top_rate"
+                style="@style/Widget.Delivery.Chip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/top_rate"
+                app:chipIconEnabled="true"
+                app:chipIcon="@drawable/ic_star"
+                app:chipIconTint="@color/icon_filter_chip_state_list_reset" />
+
+        </com.google.android.material.chip.ChipGroup>
+
+    </HorizontalScrollView>
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        tools:visibility="visible"
+        app:layout_constraintTop_toBottomOf="@+id/filterScrollView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/basketButtonContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/basketButton"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:layout_margin="24dp"
+            android:src="@drawable/ic_basket"
+            app:tint="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/basketCountTextView"
+            android:textColor="@color/white"
+            tools:text="+1"
+            android:textSize="16sp"
+            app:layout_constraintVertical_bias="0.5"
+            app:layout_constraintHorizontal_bias="0.8"
+            android:elevation="16dp"
+            android:textStyle="bold"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            app:layout_constraintStart_toStartOf="@+id/basketButton"
+            app:layout_constraintEnd_toEndOf="@+id/basketButton"
+            app:layout_constraintTop_toTopOf="@+id/basketButton"
+            app:layout_constraintBottom_toBottomOf="@+id/basketButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
